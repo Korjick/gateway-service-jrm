@@ -6,6 +6,8 @@ server:
     idle-timeout: 20s
 
 spring:
+  reactor:
+    context-propagation: auto
   application:
     name: gateway-service
   lifecycle:
@@ -143,11 +145,10 @@ management:
     gateway:
       enabled: true
   tracing:
-    enabled: true
     sampling:
       probability: 1.0
     propagation:
       type: b3
-  zipkin:
-    tracing:
-      endpoint: ${external.zipkin-endpoint}
+    export:
+      zipkin:
+        endpoint: ${external.zipkin-endpoint}
